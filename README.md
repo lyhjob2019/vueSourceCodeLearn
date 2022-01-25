@@ -18,3 +18,5 @@
 ## innerHTML
 
     会直接把字符串解析为 dom
+
+## for git push
