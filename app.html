@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 插值绑定 -->
+      <p>{{name}}</p>
+      <!-- 指令解析 -->
+      <p k-text="name"></p>
+      <p>{{age}}</p>
+      <p>{{doubleAge}}</p>
+      <!-- 双向绑定 -->
+      <input type="text" k-model="name" />
+      <!-- 事件处理 -->
+      <button @click="changeName">改变名字</button>
+      <!-- html解析 -->
+      <div k-html="html"></div>
+    </div>
+
+    <script src="./compile.js"></script>
+    <script src="./kvue.js"></script>
+    <script>
+      const app = new KVue({
+        el: "#app",
+        data: {
+          name: "lyh",
+          age: 26,
+          html: "<button>这是一个k-html按钮</button>",
+        },
+        created() {
+          console.log(`k created`);
+          setTimeout(() => {
+            console.log(`setTimeout`);
+            this.name = "改变了，在created hook 里面";
+          }, 1500);
+        },
+        methods: {
+          changeName() {
+            this.name = "改变，就是一切";
+            this.age = "还是26";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
